@@ -7,11 +7,12 @@ window.addEventListener("load", init)
 function init() {
 
     console.log(KUTYALISTA)
-    let szurtLista = szuresNevSzerint(KUTYALISTA , "d")
+    //let szurtLista = szuresKorSzerint(KUTYALISTA , "d")
     const inputELEM = document.getElementById("szurnev")
-    inputELEM.addEventListener("keyup", function(){
+    inputELEM.addEventListener("change", function(){
+        /**listázzuk ki az 5 évnél idősebb kutyákat */
         let szurFeltetel = inputELEM.value
-        let szurtLista = szuresNevSzerint(KUTYALISTA, szurFeltetel);
+        let szurtLista = szuresKorSzerint(KUTYALISTA, szurFeltetel);
         console.log(szurtLista)
 
     })
@@ -22,14 +23,16 @@ function init() {
 
 
 
-    function szuresNevSzerint(lista, keresett){
+    function szuresKorSzerint(lista, keresett){
         /** szűrjük ki a Dézi nevű kutyákat */
         /** azokat a neveket amik tartalmaznak D betűt */
         let resultList = lista.filter(
         
             function(elem){ /** Objektum */
+            console.log(typeof (elem.kor + keresett))
                 
-                return elem.nev.toUpperCase().includes(keresett.toUpperCase());
+                //return elem.nev.toUpperCase().includes(keresett.toUpperCase());
+                return eval (elem.kor + keresett);
             });
 
        
