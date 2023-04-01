@@ -1,17 +1,60 @@
+import { KUTYALISTA } from "./adatok.js";
+
 window.addEventListener("load", init)
 
 
 
 function init() {
 
+    console.log(KUTYALISTA)
+    let szurtLista = szuresNevSzerint(KUTYALISTA , "d")
+    const inputELEM = document.getElementById("szurnev")
+    inputELEM.addEventListener("keyup", function(){
+        let szurFeltetel = inputELEM.value
+        let szurtLista = szuresNevSzerint(KUTYALISTA, szurFeltetel);
+        console.log(szurtLista)
+
+    })
+
+    
+
+    }
 
 
-    const OK_GOMB = document.getElementById("ok")
-    OK_GOMB.addEventListener("click", okGombClick)
 
+    function szuresNevSzerint(lista, keresett){
+        /** szűrjük ki a Dézi nevű kutyákat */
+        /** azokat a neveket amik tartalmaznak D betűt */
+        let resultList = lista.filter(
+        
+            function(elem){ /** Objektum */
+                
+                return elem.nev.toUpperCase().includes(keresett.toUpperCase());
+            });
+
+       
+        return resultList;
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//visszakell tenni majd az initbe
+
+
+const OK_GOMB = document.getElementById("ok")
+OK_GOMB.addEventListener("click", okGombClick)
+
 
 
 function okGombClick(event) {
